@@ -11,11 +11,6 @@ app = Flask(__name__)
 # Carregar variáveis de ambiente
 load_dotenv()
 
-# Configurar pool de conexões para o banco de dados
-db_pool = psycopg2.pool.SimpleConnectionPool(
-    1, 20, os.getenv("POSTGRE2_URL")  # Min e max de conexões
-)
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -46,7 +41,7 @@ def response(type):
 
 def get_db_connection():
     try:
-        conn = db_pool.getconn()
+        conn = psycopg2.connect(os.getenv("POSTGRE2_URL"))
         if conn:
             print("Conexão com DB2 estabelecida.")
             return conn
