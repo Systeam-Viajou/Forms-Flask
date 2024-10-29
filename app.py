@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, url_for
 from dotenv import load_dotenv
 import pandas as pd
 import psycopg2
-from psycopg2 import pool
 import joblib
 import os
 
