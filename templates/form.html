@@ -1,116 +1,405 @@
-    <!DOCTYPE html>
-    <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-        <title>Pesquisa Viajou</title>
-    </head>
-    <body>
-        <div class="divForm">
-    <!-- Formulário -->
-            <form method="POST">
-                <p><strong>1. Qual sua idade?</strong></p>
-                <input type="radio" name="idade" value="Menor de 18 anos" required> Menor de 18 anos<br>
-                <input type="radio" name="idade" value="18-24 anos"> 18-24 anos<br>
-                <input type="radio" name="idade" value="25-34 anos"> 25-34 anos<br>
-                <input type="radio" name="idade" value="35-44 anos"> 35-44 anos<br>
-                <input type="radio" name="idade" value="45-54 anos"> 45-54 anos<br>
-                <input type="radio" name="idade" value="Mais de 55 anos"> Mais de 55 anos<br><br>
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Pesquisa Viajou</title>
+  </head>
+  <body>
+    <div class="divForm">
+      <!-- Formulário -->
+      <form method="POST">
+        <p><strong>1. Qual sua idade?</strong></p>
+        <input type="radio" name="idade" value="Menor de 18 anos" required />
+        Menor de 18 anos<br />
+        <input type="radio" name="idade" value="18-24 anos" /> 18-24 anos<br />
+        <input type="radio" name="idade" value="25-34 anos" /> 25-34 anos<br />
+        <input type="radio" name="idade" value="35-44 anos" /> 35-44 anos<br />
+        <input type="radio" name="idade" value="45-54 anos" /> 45-54 anos<br />
+        <input type="radio" name="idade" value="Mais de 55 anos" /> Mais de 55
+        anos<br /><br />
 
-                <p><strong>2. Qual seu gênero?</strong></p>
-                <input type="radio" name="genero" value="Feminino" required> Feminino<br>
-                <input type="radio" name="genero" value="Masculino"> Masculino<br>
-                <input type="radio" name="genero" value="Não-binário"> Não-binário<br>
-                <input type="radio" name="genero" value="Outro"> Outro<br><br>
+        <p><strong>2. Qual seu gênero?</strong></p>
+        <input type="radio" name="genero" value="Feminino" required />
+        Feminino<br />
+        <input type="radio" name="genero" value="Masculino" /> Masculino<br />
+        <input type="radio" name="genero" value="Não-binário" />
+        Não-binário<br />
+        <input type="radio" name="genero" value="Outro" /> Outro<br /><br />
 
-                <p><strong>3. Qual seu município de residência?</strong></p>
-                <input type="radio" name="municipio_residencia" value="São Paulo (capital)" required> São Paulo (capital)<br>
-                <input type="radio" name="municipio_residencia" value="Guarulhos"> Guarulhos<br>
-                <input type="radio" name="municipio_residencia" value="Campinas"> Campinas<br>
-                <input type="radio" name="municipio_residencia" value="Osasco"> Osasco<br>
-                <input type="radio" name="municipio_residencia" value="Atibaia"> Atibaia<br>
-                <input type="radio" name="municipio_residencia" value="Outra"> Outra<br><br>
+        <p><strong>3. Qual seu município de residência?</strong></p>
+        <input
+          type="radio"
+          name="municipio_residencia"
+          value="São Paulo (capital)"
+          required
+        />
+        São Paulo (capital)<br />
+        <input type="radio" name="municipio_residencia" value="Guarulhos" />
+        Guarulhos<br />
+        <input type="radio" name="municipio_residencia" value="Campinas" />
+        Campinas<br />
+        <input type="radio" name="municipio_residencia" value="Osasco" />
+        Osasco<br />
+        <input type="radio" name="municipio_residencia" value="Atibaia" />
+        Atibaia<br />
+        <input type="radio" name="municipio_residencia" value="Outra" />
+        Outra<br /><br />
 
-                <p><strong>4. Você costuma visitar pontos turísticos em sua cidade ou em viagens?</strong></p>
-                <input type="radio" name="visita_pontos_turisticos" value="Sim" required> Sim<br>
-                <input type="radio" name="visita_pontos_turisticos" value="Não"> Não<br><br>
+        <p>
+          <strong
+            >4. Você costuma visitar pontos turísticos em sua cidade ou em
+            viagens?</strong
+          >
+        </p>
+        <input
+          type="radio"
+          name="visita_pontos_turisticos"
+          value="Sim"
+          required
+        />
+        Sim<br />
+        <input type="radio" name="visita_pontos_turisticos" value="Não" />
+        Não<br /><br />
 
-                <p><strong>5. Você costuma participar de eventos?</strong></p>
-                <input type="radio" name="participa_eventos" value="Sim" required> Sim<br>
-                <input type="radio" name="participa_eventos" value="Não"> Não<br><br>
+        <p><strong>5. Você costuma participar de eventos?</strong></p>
+        <input type="radio" name="participa_eventos" value="Sim" required />
+        Sim<br />
+        <input type="radio" name="participa_eventos" value="Não" />
+        Não<br /><br />
 
-                <p><strong>6. Com que frequência você participa destes eventos?</strong></p>
-                <input type="radio" name="frequencia_eventos" value="Semanalmente" required> Semanalmente<br>
-                <input type="radio" name="frequencia_eventos" value="Mensalmente"> Mensalmente<br>
-                <input type="radio" name="frequencia_eventos" value="Ocasionalmente (de vez em quando)"> Ocasionalmente (de vez em quando)<br>
-                <input type="radio" name="frequencia_eventos" value="Raramente (poucas vezes)"> Raramente (poucas vezes)<br><br>
+        <p>
+          <strong>6. Com que frequência você participa destes eventos?</strong>
+        </p>
+        <input
+          type="radio"
+          name="frequencia_eventos"
+          value="Semanalmente"
+          required
+        />
+        Semanalmente<br />
+        <input type="radio" name="frequencia_eventos" value="Mensalmente" />
+        Mensalmente<br />
+        <input
+          type="radio"
+          name="frequencia_eventos"
+          value="Ocasionalmente (de vez em quando)"
+        />
+        Ocasionalmente (de vez em quando)<br />
+        <input
+          type="radio"
+          name="frequencia_eventos"
+          value="Raramente (poucas vezes)"
+        />
+        Raramente (poucas vezes)<br /><br />
 
-                <p><strong>7. Quais tipos de eventos turísticos você prefere visitar?</strong></p>
-                <input type="checkbox" name="tipos_eventos_preferidos" value="Musicais"> Musicais (ex: shows, festivais de música, concertos)<br>
-                <input type="checkbox" name="tipos_eventos_preferidos" value="Teatrais"> Teatrais (ex: peças de teatro, stand-up comedy, óperas)<br>
-                <input type="checkbox" name="tipos_eventos_preferidos" value="Culturais"> Culturais (ex: exposições de arte, feiras culturais, lançamentos de livros)<br>
-                <input type="checkbox" name="tipos_eventos_preferidos" value="Gastronômicos"> Gastronômicos (ex: festivais de comida, feiras gastronômicas, degustações)<br>
-                <input type="checkbox" name="tipos_eventos_preferidos" value="Esportivos"> Esportivos (ex: jogos de futebol, maratonas, competições esportivas)<br>
-                <input type="checkbox" name="tipos_eventos_preferidos" value="Eletrônicos"> Eletrônicos (ex: feiras de tecnologia, lançamentos de produtos, conferências de inovação, hackathons, workshops de eletrônica)<br><br>
+        <p>
+          <strong
+            >7. Quais tipos de eventos turísticos você prefere visitar?</strong
+          >
+        </p>
+        <input
+          type="checkbox"
+          name="tipos_eventos_preferidos"
+          value="Musicais"
+        />
+        Musicais (ex: shows, festivais de música, concertos)<br />
+        <input
+          type="checkbox"
+          name="tipos_eventos_preferidos"
+          value="Teatrais"
+        />
+        Teatrais (ex: peças de teatro, stand-up comedy, óperas)<br />
+        <input
+          type="checkbox"
+          name="tipos_eventos_preferidos"
+          value="Culturais"
+        />
+        Culturais (ex: exposições de arte, feiras culturais, lançamentos de
+        livros)<br />
+        <input
+          type="checkbox"
+          name="tipos_eventos_preferidos"
+          value="Gastronômicos"
+        />
+        Gastronômicos (ex: festivais de comida, feiras gastronômicas,
+        degustações)<br />
+        <input
+          type="checkbox"
+          name="tipos_eventos_preferidos"
+          value="Esportivos"
+        />
+        Esportivos (ex: jogos de futebol, maratonas, competições esportivas)<br />
+        <input
+          type="checkbox"
+          name="tipos_eventos_preferidos"
+          value="Eletrônicos"
+        />
+        Eletrônicos (ex: feiras de tecnologia, lançamentos de produtos,
+        conferências de inovação, hackathons, workshops de eletrônica)<br /><br />
 
-                <p><strong>8. Você costuma participar de excursões organizadas?</strong></p>
-                <input type="radio" name="usou_apps_turismo" value="Sim" required> Sim<br>
-                <input type="radio" name="usou_apps_turismo" value="Não"> Não<br><br> 
+        <p>
+          <strong>8. Você costuma participar de excursões organizadas?</strong>
+        </p>
+        <input type="radio" name="usou_apps_turismo" value="Sim" required />
+        Sim<br />
+        <input type="radio" name="usou_apps_turismo" value="Não" />
+        Não<br /><br />
 
-                <p><strong>9. Com que frequência você utiliza tours virtuais para explorar novos lugares?</strong></p>
-                <input type="radio" name="frequencia_tours_virtuais" value="Frequentemente" required> Frequentemente<br>
-                <input type="radio" name="frequencia_tours_virtuais" value="Ocasionalmente"> Ocasionalmente<br>
-                <input type="radio" name="frequencia_tours_virtuais" value="Raramente"> Raramente<br>
-                <input type="radio" name="frequencia_tours_virtuais" value="Nunca"> Nunca<br><br>
+        <p>
+          <strong
+            >9. Com que frequência você utiliza tours virtuais para explorar
+            novos lugares?</strong
+          >
+        </p>
+        <input
+          type="radio"
+          name="frequencia_tours_virtuais"
+          value="Frequentemente"
+          required
+        />
+        Frequentemente<br />
+        <input
+          type="radio"
+          name="frequencia_tours_virtuais"
+          value="Ocasionalmente"
+        />
+        Ocasionalmente<br />
+        <input
+          type="radio"
+          name="frequencia_tours_virtuais"
+          value="Raramente"
+        />
+        Raramente<br />
+        <input type="radio" name="frequencia_tours_virtuais" value="Nunca" />
+        Nunca<br /><br />
 
-                <p><strong>10. Com que frequência você costuma usar aplicativos de turismo?</strong></p>
-                <input type="radio" name="frequencia_apps_turismo" value="Sempre que saio." required> Sempre que saio.<br>
-                <input type="radio" name="frequencia_apps_turismo" value="Frequentemente (mais de 3 vezes por ano)"> Frequentemente (mais de 3 vezes por ano)<br>
-                <input type="radio" name="frequencia_apps_turismo" value="Ocasionalmente (1-2 vezes por ano)"> Ocasionalmente (1-2 vezes por ano)<br>
-                <input type="radio" name="frequencia_apps_turismo" value="Raramente (menos de 1 vez por ano)"> Raramente (menos de 1 vez por ano)<br>
-                <input type="radio" name="frequencia_apps_turismo" value="Nunca"> Nunca<br><br>
+        <p>
+          <strong
+            >10. Com que frequência você costuma usar aplicativos de
+            turismo?</strong
+          >
+        </p>
+        <input
+          type="radio"
+          name="frequencia_apps_turismo"
+          value="Sempre que saio."
+          required
+        />
+        Sempre que saio.<br />
+        <input
+          type="radio"
+          name="frequencia_apps_turismo"
+          value="Frequentemente (mais de 3 vezes por ano)"
+        />
+        Frequentemente (mais de 3 vezes por ano)<br />
+        <input
+          type="radio"
+          name="frequencia_apps_turismo"
+          value="Ocasionalmente (1-2 vezes por ano)"
+        />
+        Ocasionalmente (1-2 vezes por ano)<br />
+        <input
+          type="radio"
+          name="frequencia_apps_turismo"
+          value="Raramente (menos de 1 vez por ano)"
+        />
+        Raramente (menos de 1 vez por ano)<br />
+        <input type="radio" name="frequencia_apps_turismo" value="Nunca" />
+        Nunca<br /><br />
 
-                <p><strong>11. Você já utilizou aplicativos para encontrar eventos ou atrações turísticas?</strong></p>
-                <input type="radio" name="usou_apps_turismo" value="Sim" required> Sim<br>
-                <input type="radio" name="usou_apps_turismo" value="Não"> Não<br><br>
+        <p>
+          <strong
+            >11. Você já utilizou aplicativos para encontrar eventos ou atrações
+            turísticas?</strong
+          >
+        </p>
+        <input type="radio" name="usou_apps_turismo" value="Sim" required />
+        Sim<br />
+        <input type="radio" name="usou_apps_turismo" value="Não" />
+        Não<br /><br />
 
-                <p><strong>12. O quanto você confia nas avaliações de outros usuários em aplicativos de turismo?</strong></p>
-                <input type="range" name="confianca_avaliacoes" min="1" max="5" step="1" required><br><br>
+        <p>
+          <strong
+            >12. O quanto você confia nas avaliações de outros usuários em
+            aplicativos de turismo?</strong
+          >
+        </p>
+        <input
+          type="range"
+          name="confianca_avaliacoes"
+          min="1"
+          max="5"
+          step="1"
+          required
+        /><br /><br />
 
-                <p><strong>13. Você se interessa por experiências turísticas que incluam acessibilidade para todos?</strong></p>
-                <input type="radio" name="interesse_acessibilidade" value="Sim, é muito importante pra mim." required> Sim, é muito importante pra mim.<br>
-                <input type="radio" name="interesse_acessibilidade" value="Sim, mas não é essencial"> Sim, mas não é essencial<br>
-                <input type="radio" name="interesse_acessibilidade" value="Não me importo"> Não me importo<br>
-                <input type="radio" name="interesse_acessibilidade" value="Não, não tenho interesse"> Não, não tenho interesse<br><br>
+        <p>
+          <strong
+            >13. Você se interessa por experiências turísticas que incluam
+            acessibilidade para todos?</strong
+          >
+        </p>
+        <input
+          type="radio"
+          name="interesse_acessibilidade"
+          value="Sim, é muito importante pra mim."
+          required
+        />
+        Sim, é muito importante pra mim.<br />
+        <input
+          type="radio"
+          name="interesse_acessibilidade"
+          value="Sim, mas não é essencial"
+        />
+        Sim, mas não é essencial<br />
+        <input
+          type="radio"
+          name="interesse_acessibilidade"
+          value="Não me importo"
+        />
+        Não me importo<br />
+        <input
+          type="radio"
+          name="interesse_acessibilidade"
+          value="Não, não tenho interesse"
+        />
+        Não, não tenho interesse<br /><br />
 
-                <p><strong>14. Você estaria disposto a pagar por um tour virtual completo de um ponto turístico ou evento?</strong></p>
-                <input type="radio" name="pagaria_por_tour_virtual" value="Sim, estaria disposto" required> Sim, estaria disposto<br>
-                <input type="radio" name="pagaria_por_tour_virtual" value="Sim, se o preço for acessível"> Sim, se o preço for acessível<br>
-                <input type="radio" name="pagaria_por_tour_virtual" value="Não, prefiro gastar em outra coisa"> Não, prefiro gastar em outra coisa<br>
-                <input type="radio" name="pagaria_por_tour_virtual" value="Talvez, depende da situação"> Talvez, depende da situação<br><br>
+        <p>
+          <strong
+            >14. Você estaria disposto a pagar por um tour virtual completo de
+            um ponto turístico ou evento?</strong
+          >
+        </p>
+        <input
+          type="radio"
+          name="pagaria_por_tour_virtual"
+          value="Sim, estaria disposto"
+          required
+        />
+        Sim, estaria disposto<br />
+        <input
+          type="radio"
+          name="pagaria_por_tour_virtual"
+          value="Sim, se o preço for acessível"
+        />
+        Sim, se o preço for acessível<br />
+        <input
+          type="radio"
+          name="pagaria_por_tour_virtual"
+          value="Não, prefiro gastar em outra coisa"
+        />
+        Não, prefiro gastar em outra coisa<br />
+        <input
+          type="radio"
+          name="pagaria_por_tour_virtual"
+          value="Talvez, depende da situação"
+        />
+        Talvez, depende da situação<br /><br />
 
-                <p><strong>15. Como você costuma descobrir sobre eventos e atrações turísticas?</strong></p>
-                <input type="checkbox" name="descoberta_eventos_atracoes" value="Redes Sociais"> Redes Sociais<br>
-                <input type="checkbox" name="descoberta_eventos_atracoes" value="Sites de Turismo"> Sites de Turismo<br>
-                <input type="checkbox" name="descoberta_eventos_atracoes" value="Blogs e Sites de Viagem"> Blogs e Sites de Viagem<br>
-                <input type="checkbox" name="descoberta_eventos_atracoes" value="Aplicativos de Turismo"> Aplicativos de Turismo<br>
-                <input type="checkbox" name="descoberta_eventos_atracoes" value="Recomendações de Amigos e Família"> Recomendações de Amigos e Família<br>
-                <input type="checkbox" name="descoberta_eventos_atracoes" value="Agências de Viagem e Operadoras de Turismo"> Agências de Viagem e Operadoras de Turismo<br><br>
+        <p>
+          <strong
+            >15. Como você costuma descobrir sobre eventos e atrações
+            turísticas?</strong
+          >
+        </p>
+        <input
+          type="checkbox"
+          name="descoberta_eventos_atracoes"
+          value="Redes Sociais"
+        />
+        Redes Sociais<br />
+        <input
+          type="checkbox"
+          name="descoberta_eventos_atracoes"
+          value="Sites de Turismo"
+        />
+        Sites de Turismo<br />
+        <input
+          type="checkbox"
+          name="descoberta_eventos_atracoes"
+          value="Blogs e Sites de Viagem"
+        />
+        Blogs e Sites de Viagem<br />
+        <input
+          type="checkbox"
+          name="descoberta_eventos_atracoes"
+          value="Aplicativos de Turismo"
+        />
+        Aplicativos de Turismo<br />
+        <input
+          type="checkbox"
+          name="descoberta_eventos_atracoes"
+          value="Recomendações de Amigos e Família"
+        />
+        Recomendações de Amigos e Família<br />
+        <input
+          type="checkbox"
+          name="descoberta_eventos_atracoes"
+          value="Agências de Viagem e Operadoras de Turismo"
+        />
+        Agências de Viagem e Operadoras de Turismo<br /><br />
 
-                <p><strong>16. Qual é a sua principal motivação para usar um aplicativo de turismo?</strong></p>
-                <input type="radio" name="motivacao_uso_app_turismo" value="Encontrar Novas Experiências" required> Encontrar Novas Experiências (ex.: descobrir atividades e atrações novas)<br>
-                <input type="radio" name="motivacao_uso_app_turismo" value="Obter Informações Detalhadas"> Obter Informações Detalhadas (ex.: horários de eventos, descrições de pontos turísticos)<br>
-                <input type="radio" name="motivacao_uso_app_turismo" value="Reservar Ingressos e Excursões"> Reservar Ingressos e Excursões (ex.: comprar bilhetes, reservar tours)<br>
-                <input type="radio" name="motivacao_uso_app_turismo" value="Receber Recomendações Personalizadas"> Receber Recomendações Personalizadas (ex.: sugestões baseadas em preferências pessoais)<br>
-                <input type="radio" name="motivacao_uso_app_turismo" value="Acompanhar Eventos e Ofertas Especiais"> Acompanhar Eventos e Ofertas Especiais (ex.: promoções, eventos sazonais)<br>
-                <input type="radio" name="motivacao_uso_app_turismo" value="Nenhuma das opções"> Nenhuma das opções<br><br>
+        <p>
+          <strong
+            >16. Qual é a sua principal motivação para usar um aplicativo de
+            turismo?</strong
+          >
+        </p>
+        <input
+          type="radio"
+          name="motivacao_uso_app_turismo"
+          value="Encontrar Novas Experiências"
+          required
+        />
+        Encontrar Novas Experiências (ex.: descobrir atividades e atrações
+        novas)<br />
+        <input
+          type="radio"
+          name="motivacao_uso_app_turismo"
+          value="Obter Informações Detalhadas"
+        />
+        Obter Informações Detalhadas (ex.: horários de eventos, descrições de
+        pontos turísticos)<br />
+        <input
+          type="radio"
+          name="motivacao_uso_app_turismo"
+          value="Reservar Ingressos e Excursões"
+        />
+        Reservar Ingressos e Excursões (ex.: comprar bilhetes, reservar
+        tours)<br />
+        <input
+          type="radio"
+          name="motivacao_uso_app_turismo"
+          value="Receber Recomendações Personalizadas"
+        />
+        Receber Recomendações Personalizadas (ex.: sugestões baseadas em
+        preferências pessoais)<br />
+        <input
+          type="radio"
+          name="motivacao_uso_app_turismo"
+          value="Acompanhar Eventos e Ofertas Especiais"
+        />
+        Acompanhar Eventos e Ofertas Especiais (ex.: promoções, eventos
+        sazonais)<br />
+        <input
+          type="radio"
+          name="motivacao_uso_app_turismo"
+          value="Nenhuma das opções"
+        />
+        Nenhuma das opções<br /><br />
 
-                <input type="submit" value="Enviar" class="submit-button">
-
-            </form>
-
-        </div>
-    </body>
-    </html>
+        <input type="submit" value="Enviar" class="submit-button" />
+      </form>
+    </div>
+  </body>
+</html>

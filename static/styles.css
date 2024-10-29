@@ -1,112 +1,117 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif; /* Aplica Montserrat */
-    background-image: url('Desktop - 1 (7).jpg');
-    background-size: cover;
-    background-position: center top;
-    margin-top: 30px;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif; /* Aplica Montserrat */
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center top;
+  margin-top: 30px;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  overflow-y: hidden;
 }
 
 .form-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 10px;
 }
 
 .divForm {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
 }
 form {
-    display: block;
-    position: absolute;
-    background-color: #F8F8F8;
-    padding: 10px;
-    height: 70%;
-    border-radius: 10px;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    overflow-y: auto;
-    max-height: calc(100vh - 60px);
-    margin: 8px;
-    bottom: 0px;
+  display: block;
+  position: absolute;
+  background-color: #f8f8f8;
+  padding: 10px;
+  height: 70%;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+  margin: 8px;
+  bottom: 0px;
 }
-@media(max-width: 500px) {
-    form{   
-        height: 80%;
-    }
+@media (max-width: 500px) {
+  form {
+    height: 80%;
+  }
 }
 
 /* Títulos do formulário */
 p strong {
-    color: #413752;
-    font-weight: 5000; /* Define o peso da fonte */
+  color: #413752;
+  font-weight: 5000; /* Define o peso da fonte */
 }
 
 /* Respostas (opções de input) */
 input[type="radio"] + label,
 input[type="checkbox"] + label {
-    color: #413752;
+  color: #413752;
 }
 
-input[type="radio"], input[type="checkbox"] {
-    margin-right: 10px;
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 10px;
 }
 
 /* Estilo dos inputs (radio, checkbox) */
-input[type="radio"]:checked, input[type="checkbox"]:checked, input[type="range"] {
-    accent-color: #7A57CE;
+input[type="radio"]:checked,
+input[type="checkbox"]:checked,
+input[type="range"] {
+  accent-color: #7a57ce;
 }
 
-button, .submit-button {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    background-color: #55237e;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: 700; /* Peso da fonte */
+button,
+.submit-button {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  background-color: #55237e;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 700; /* Peso da fonte */
 }
 
-button:hover, .submit-button:hover {
-    background-color: #3d1f63;
+button:hover,
+.submit-button:hover {
+  background-color: #3d1f63;
 }
 
 /* Ajustes para dispositivos móveis */
 @media (min-width: 600px) {
-    form {
-        padding: 15px;
-        font-size: 14px;
-        max-width: 90%;
-    }
+  form {
+    padding: 15px;
+    font-size: 14px;
+    max-width: 90%;
+  }
 
-    .submit-button {
-        padding: 12px;
-        font-size: 14px;
-    }
+  .submit-button {
+    padding: 12px;
+    font-size: 14px;
+  }
 
-    body {
-        background-size: cover;
-        align-items: flex-start;
-    }
+  body {
+    background-size: cover;
+    align-items: flex-start;
+  }
 }
