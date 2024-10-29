@@ -19,6 +19,31 @@ db_pool = psycopg2.pool.SimpleConnectionPool(
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
+def response(type):
+    return f"""
+                            <html>
+                            <head>
+                                <style>
+                                    body, html {{
+                                        height: 100%;
+                                        margin: 0;
+                                    }}
+                                    .full-bg {{
+                                        background-image: url('{type}');
+                                        height: 100%;
+                                        background-position: center;
+                                        background-size: cover;
+                                        background-repeat: no-repeat;
+                                    }}
+                                </style>
+                            </head>
+                            <body>
+                                <div class="full-bg"></div>
+                            </body>
+                            </html>
+                            """
+
+
 def get_db_connection():
     try:
         conn = db_pool.getconn()
@@ -28,6 +53,12 @@ def get_db_connection():
     except Exception as e:
         print(f"Erro ao conectar ao DB2: {e}")
         return None
+
+
+@app.route("/", methods=["GET"])
+def home():
+    uuid = url_for("static", filename="uuid.jpg")
+    return response(uuid)
 
 
 @app.route("/<uid>", methods=["GET", "POST"])
@@ -42,55 +73,17 @@ def pesquisa(uid):
             cursor.execute("SELECT uid FROM usuario WHERE uid = %s", (uid,))
             result = cursor.fetchone()
             if result is None:
-                erro = url_for("static", filename="erro.jpg")
-                return f"""
-                            <html>
-                            <head>
-                                <style>
-                                    body, html {{
-                                        height: 100%;
-                                        margin: 0;
-                                    }}
-                                    .full-bg {{
-                                        background-image: url('{erro}');
-                                        height: 100%;
-                                        background-position: center;
-                                        background-size: cover;
-                                        background-repeat: no-repeat;
-                                    }}
-                                </style>
-                            </head>
-                            <body>
-                                <div class="full-bg"></div>
-                            </body>
-                            </html>
-                            """
+                error = url_for("static", filename="error.jpg")
+                return response(error)
 
-            cursor.execute("SELECT * FROM  resposta_usuario WHERE id_usuario = %s", (uid,))
+            cursor.execute(
+                "SELECT * FROM  resposta_usuario WHERE id_usuario = %s", (uid,)
+            )
             result = cursor.fetchone()
             if result is not None:
-                return """
-                            <html>
-                            <head>
-                                <style>
-                                    body, html {{
-                                        height: 100%;
-                                        margin: 0;
-                                    }}
-                                    .full-bg {{
-                                        background-color: #D0CAD3;
-                                        height: 100%;
-                                        background-position: center;
-                                        background-size: cover;
-                                        background-repeat: no-repeat;
-                                    }}
-                                </style>
-                            </head>
-                            <body>
-                                <h1>Você já respondeu este formulário!</h1>
-                            </body>
-                            </html>
-                            """.format(image_url=result[1])
+                answered = url_for("static", filename="answered.jpg")
+                return response(answered)
+
     except Exception as e:
         print(f"Erro ao verificar UID: {e}")
         return "Erro ao verificar o usuário.", 500
@@ -141,7 +134,6 @@ def pesquisa(uid):
         )
         previsao = int(model_pipeline.predict(df)[0])
 
-        print(previsao)
         try:
             connection = get_db_connection()
             with connection.cursor() as cursor:
@@ -153,31 +145,10 @@ def pesquisa(uid):
         finally:
             db_pool.putconn(connection)  # Devolve a conexão ao pool
 
-        image_file = "recomenda (7).jpg" if previsao == 1 else "naorecomenda (3).jpg"
+        image_file = "recomenda.jpg" if previsao == 1 else "naorecomenda.jpg"
         result = url_for("static", filename=image_file)
 
-        return f"""
-                            <html>
-                            <head>
-                                <style>
-                                    body, html {{
-                                        height: 100%;
-                                        margin: 0;
-                                    }}
-                                    .full-bg {{
-                                        background-image: url('{result}');
-                                        height: 100%;
-                                        background-position: center;
-                                        background-size: cover;
-                                        background-repeat: no-repeat;
-                                    }}
-                                </style>
-                            </head>
-                            <body>
-                                <div class="full-bg"></div>
-                            </body>
-                            </html>
-                            """
+        return response(result)
 
     # GET request: renderizar o formulário
     return render_template("form.html")
