@@ -79,11 +79,11 @@ def pesquisa(uid):
                 answered = url_for("static", filename="answered.jpg")
                 return response(answered)
 
-    except Exception as e:
+    except psycopg2.DatabaseError as e:
         print(f"Erro ao verificar UID: {e}")
         return "Erro ao verificar o usuário.", 500
     finally:
-        db_pool.putconn(connection)
+        connection.close()
 
     if request.method == "POST":
         # Processamento do formulário
@@ -138,7 +138,7 @@ def pesquisa(uid):
                 )
                 connection.commit()
         finally:
-            db_pool.putconn(connection)  # Devolve a conexão ao pool
+            connection.close()
 
         image_file = "recomenda.jpg" if previsao == 1 else "naorecomenda.jpg"
         result = url_for("static", filename=image_file)
