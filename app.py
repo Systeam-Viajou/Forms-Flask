@@ -41,7 +41,13 @@ def response(type):
 
 def get_db_connection():
     try:
-        conn = psycopg2.connect(os.getenv("POSTGRE2_URL"))
+        conn = psycopg2.connect(
+            dbname='dbviajou2',
+            user=os.getenv('POSTGRE_USER'),
+            password=os.getenv('POSTGRE_PASSWORD'),
+            host=os.getenv('POSTGRE_HOST'),
+            port=os.getenv('POSTGRE_PORT')
+        )
         if conn:
             print("Conexão com DB2 estabelecida.")
             return conn
