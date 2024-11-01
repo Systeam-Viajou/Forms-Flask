@@ -62,34 +62,11 @@ def home():
     return response(uuid)
 
 
-@app.route("/<uid>", methods=["GET", "POST"])
-def pesquisa(uid):
+@app.route("/<name>", methods=["GET", "POST"])
+def pesquisa(name):
     connection = get_db_connection()
     if not connection:
         return "Erro de conexão com o banco de dados.", 500
-
-    # Verificar se o UID existe no banco de dados
-    try:
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT uid FROM usuario WHERE uid = %s", (uid,))
-            result = cursor.fetchone()
-            if result is None:
-                error = url_for("static", filename="error.jpg")
-                return response(error)
-
-            cursor.execute(
-                "SELECT * FROM  resposta_usuario WHERE id_usuario = %s", (uid,)
-            )
-            result = cursor.fetchone()
-            if result is not None:
-                answered = url_for("static", filename="answered.jpg")
-                return response(answered)
-
-    except psycopg2.DatabaseError as e:
-        print(f"Erro ao verificar UID: {e}")
-        return "Erro ao verificar o usuário.", 500
-    finally:
-        connection.close()
 
     if request.method == "POST":
         # Processamento do formulário
@@ -140,7 +117,7 @@ def pesquisa(uid):
             with connection.cursor() as cursor:
                 cursor.execute(
                     "INSERT INTO resposta_usuario (id_usuario, resposta) VALUES (%s, %s)",
-                    (uid, previsao),
+                    (name, previsao),
                 )
                 connection.commit()
         finally:
