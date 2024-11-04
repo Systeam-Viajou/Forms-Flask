@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for
 from dotenv import load_dotenv
 import pandas as pd
-from psycopg2 import pool
+import sklearn
 import psycopg2
 import joblib
 import os
@@ -116,10 +116,11 @@ def pesquisa(name):
             connection = get_db_connection()
             with connection.cursor() as cursor:
                 cursor.execute(
-                    "INSERT INTO resposta_usuario (id_usuario, resposta) VALUES (%s, %s)",
+                    "INSERT INTO resposta_usuario (nome, resposta) VALUES (%s, %s)",
                     (name, previsao),
                 )
                 connection.commit()
+                print('Inserido')
         finally:
             connection.close()
 
